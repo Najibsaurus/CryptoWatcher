@@ -2,12 +2,8 @@ package com.najib.cryptowatcher
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.androidnetworking.widget.ANImageView
 import com.najib.cryptowatcher.databinding.ActivityDetailBinding
-import com.najib.cryptowatcher.databinding.ActivityMainBinding
-import com.najib.cryptowatcher.databinding.ItemCryptoBinding
 
 class DetailCryptoActivity : AppCompatActivity() {
 

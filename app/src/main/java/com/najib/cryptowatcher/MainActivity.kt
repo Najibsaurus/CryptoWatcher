@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(), OnRefreshListener {
                     Intent(
                         this@MainActivity,
                         DetailCryptoActivity::class.java
-                    ).putExtra(DetailCryptoActivity.Companion.EXTRA_CRYPTO, crypto)
+                    ).putExtra(DetailCryptoActivity.EXTRA_CRYPTO, crypto)
                 )
             }
 
