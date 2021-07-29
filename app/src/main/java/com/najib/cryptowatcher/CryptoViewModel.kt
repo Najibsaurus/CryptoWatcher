@@ -36,7 +36,7 @@ class CryptoViewModel : ViewModel() {
                             data = response.getJSONObject(i)
                             val crypto = Crypto()
                             crypto.id = data.getString("id")
-                            crypto.symbol = data.getString("symbol").toUpperCase()
+                            crypto.symbol = data.getString("symbol").uppercase()
                             crypto.image = data.getString("image")
                             crypto.name = data.getString("name")
                             crypto.currentPrice =
@@ -53,14 +53,14 @@ class CryptoViewModel : ViewModel() {
                             items.add(crypto)
                         } catch (e: JSONException) {
                             e.printStackTrace()
-                            Log.e("Exception error :", e.message!!)
+                            Log.e("Exception error :", e.message.toString())
                         }
                     }
                     mCryptoData.postValue(items)
                 }
 
                 override fun onError(error: ANError) {
-                    Log.e("Request network error :", error.message!!)
+                    Log.e("Request network error :", error.message.toString())
                 }
             })
     }
