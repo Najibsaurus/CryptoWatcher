@@ -2,43 +2,39 @@ package com.najib.cryptowatcher
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.NewInstanceFactory
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
+import com.najib.cryptowatcher.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity(), OnRefreshListener {
 
-    private var mAdapter: CryptoAdapter? = null
-    private var viewModel: CryptoViewModel? = null
+    private lateinit var mAdapter: CryptoAdapter
+    private lateinit var viewModel: CryptoViewModel
+    private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        viewModel = ViewModelProvider(this, NewInstanceFactory()).get(
-            CryptoViewModel::class.java
-        )
-        val recyclerView = findViewById<RecyclerView>(R.id.recylerview)
-        val swipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.swipeRefresh)
-        swipeRefreshLayout.setOnRefreshListener(this)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        viewModel = ViewModelProvider(this, NewInstanceFactory()).get(CryptoViewModel::class.java)
+        binding.swipeRefresh.setOnRefreshListener(this)
         mAdapter = CryptoAdapter()
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = mAdapter
-        viewModel?.requestData()
-
-        viewModel?.data?.observe(this, { items  ->
+        binding.recylerview.layoutManager = LinearLayoutManager(this)
+        binding.recylerview.adapter = mAdapter
+        viewModel.requestData()
+        viewModel.data.observe(this, { items  ->
             if (items.isNotEmpty()) {
-                mAdapter?.init(items, applicationContext)
-                swipeRefreshLayout.isRefreshing = false
+                mAdapter.init(items, applicationContext)
+                binding.swipeRefresh.isRefreshing = false
             }
         })
 
-        mAdapter?.setOnItemClick(object : CryptoAdapter.OnItemClick{
+        mAdapter.setOnItemClick(object : CryptoAdapter.OnItemClick{
             override fun click(crypto: Crypto?) {
                 startActivity(
                     Intent(
@@ -53,6 +49,6 @@ class MainActivity : AppCompatActivity(), OnRefreshListener {
     }
 
     override fun onRefresh() {
-        viewModel?.requestData()
+        viewModel.requestData()
     }
 }

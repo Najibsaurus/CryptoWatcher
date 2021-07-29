@@ -5,10 +5,9 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.androidnetworking.widget.ANImageView
 import com.najib.cryptowatcher.CryptoAdapter.BaseViewHolder
+import com.najib.cryptowatcher.databinding.ItemCryptoBinding
 import java.util.*
 
 class CryptoAdapter : RecyclerView.Adapter<BaseViewHolder>() {
@@ -17,7 +16,7 @@ class CryptoAdapter : RecyclerView.Adapter<BaseViewHolder>() {
     private var onItemClick: OnItemClick? = null
 
 
-    var mContext: Context? = null
+    private var mContext: Context? = null
 
     fun setOnItemClick(onItemClick:OnItemClick) {
         this.onItemClick = onItemClick    }
@@ -36,7 +35,7 @@ class CryptoAdapter : RecyclerView.Adapter<BaseViewHolder>() {
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         holder.bindTo(mCryptoData[position], mContext)
-        holder.itemView.setOnClickListener { view: View? ->
+        holder.itemView.setOnClickListener {
             onItemClick?.click(
                 mCryptoData[position]
             )
@@ -47,20 +46,16 @@ class CryptoAdapter : RecyclerView.Adapter<BaseViewHolder>() {
         return mCryptoData.size
     }
 
-    class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textSymbol: TextView
-        val textPrice: TextView
-        val textPercentage: TextView
-        val textName: TextView
-        val imgLogo: ANImageView
+  inner class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding = ItemCryptoBinding.bind(itemView)
+
         fun bindTo(crypto: Crypto?, context: Context?) {
-            textSymbol.text = crypto?.symbol
-            textPrice.text = crypto?.currentPrice
-            textPercentage.text = context?.resources?.getString(
+            binding.txtSymbol.text = crypto?.symbol
+            binding.txtPrice.text = crypto?.currentPrice
+            binding.txtPercentage.text = context?.resources?.getString(
                 R.string.percentage,
                 String.format("%s", crypto?.marketCapChangePercentage24h)
             )
-
             val color   =  crypto?.marketCapChangePercentage24h?.let {
                 if (it < 0) {
                     Color.RED
@@ -73,17 +68,9 @@ class CryptoAdapter : RecyclerView.Adapter<BaseViewHolder>() {
                     )
                 }
             }
-            color?.let { textPercentage.setTextColor(it) }
-            textName.text = crypto?.name
-            imgLogo.setImageUrl(crypto?.image)
-        }
-
-        init {
-            imgLogo = itemView.findViewById(R.id.ic_coin)
-            textSymbol = itemView.findViewById(R.id.txtSymbol)
-            textPrice = itemView.findViewById(R.id.txtPrice)
-            textPercentage = itemView.findViewById(R.id.txtPercentage)
-            textName = itemView.findViewById(R.id.txtName)
+            color?.let { binding.txtPercentage.setTextColor(it) }
+            binding.txtName.text = crypto?.name
+            binding.icCoin.setImageUrl(crypto?.image)
         }
     }
 

@@ -34,22 +34,19 @@ class CryptoViewModel : ViewModel() {
                     for (i in 0 until response.length()) {
                         try {
                             data = response.getJSONObject(i)
-                            val crypto = Crypto()
-                            crypto.id = data.getString("id")
-                            crypto.symbol = data.getString("symbol").uppercase()
-                            crypto.image = data.getString("image")
-                            crypto.name = data.getString("name")
-                            crypto.currentPrice =
-                                "$" + DecimalFormat("##.##").format(data.getDouble("current_price"))
-                            crypto.highPrice =
-                                "$" + DecimalFormat("##.##").format(data.getDouble("high_24h"))
-                            crypto.lowPrice =
-                                "$" + DecimalFormat("##.##").format(data.getDouble("low_24h"))
-                            crypto.marketCapChangePercentage24h = java.lang.Double.valueOf(
-                                DecimalFormat("##.##").format(
-                                    data.getDouble("market_cap_change_percentage_24h")
-                                )
-                            )
+                            val crypto = Crypto(
+                                data.getString("id"),
+                                data.getString("symbol").uppercase(),
+                                data.getString("name"),
+                                data.getString("image"),
+                                "$" + DecimalFormat("##.##").format(data.getDouble("current_price")),
+                                "$" + DecimalFormat("##.##").format(data.getDouble("high_24h")),
+                                "$" + DecimalFormat("##.##").format(data.getDouble("low_24h")),
+                                java.lang.Double.valueOf(
+                                    DecimalFormat("##.##").format(
+                                        data.getDouble("market_cap_change_percentage_24h")
+                                    )
+                            ))
                             items.add(crypto)
                         } catch (e: JSONException) {
                             e.printStackTrace()

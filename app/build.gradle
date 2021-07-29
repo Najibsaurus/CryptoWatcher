@@ -1,7 +1,9 @@
 plugins {
     id 'com.android.application'
+    id 'kotlin-parcelize'
+    id 'kotlin-android'
 }
-apply plugin: 'kotlin-android'
+
 
 android {
     compileSdkVersion 30
@@ -28,6 +30,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -38,6 +46,7 @@ dependencies {
     implementation 'com.amitshekhar.android:android-networking:1.0.2'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'com.google.android:flexbox:1.1.0'
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
