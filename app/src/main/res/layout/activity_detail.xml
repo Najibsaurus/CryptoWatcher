@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailCryptoActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.androidnetworking.widget.ANImageView
+                android:id="@+id/logoCoin"
+                android:layout_gravity="center"
+                android:layout_width="100dp"
+                android:layout_height="100dp">
+            </com.androidnetworking.widget.ANImageView>
+
+            <TextView
+                android:id="@+id/txtSymbolCrypto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textStyle="bold"
+                tools:text="TTM" />
+
+            <TextView
+                android:id="@+id/txtNameCrypto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+                tools:text="To The Moon" />
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alignmentMode="alignMargins"
+                    android:layout_marginTop="8dp"
+                    android:columnCount="3">
+      
+                    <LinearLayout
+                        android:layout_columnWeight="1"
+                        android:background="@color/white"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_height="70dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:text="@string/price" />
+
+                        <TextView
+                            android:id="@+id/txtCurrentPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textStyle="bold"
+                            tools:text="Price" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_columnWeight="1"
+                        android:background="@color/white"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_height="70dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
+                            android:text="@string/low" />
+
+                        <TextView
+                            android:id="@+id/txtLowPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textStyle="bold"
+                            android:textColor="@color/design_default_color_error"
+                            tools:text="Price" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_columnWeight="1"
+                        android:background="@color/white"
+                        android:layout_width="0dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_height="70dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:text="@string/high" />
+
+                        <TextView
+                            android:id="@+id/txtHighPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textStyle="bold"
+                            android:textColor="@color/teal_700"
+                            tools:text="Price" />
+
+                    </LinearLayout>
+                
+                </GridLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CryptoWatcher</string>
+    <string name="coin_desc">This image for represent coin logo</string>
+    <string name="low">Low</string>
+    <string name="high">High</string>
+    <string name="price">Price</string>
+    <string name="percentage">%1$s%%</string>
+</resources>
